@@ -1,35 +1,35 @@
-# This is a basic workflow to help you get started with Actions
-
+# workflow 名稱
 name: CI
 
-# Controls when the workflow will run
+# 什麼情況下觸發 workflow
 on:
-  # Triggers the workflow on push or pull request events but only for the "develop" branch
+  # 建立 Branch 與 Pull Request 時觸發 workflow 
   push:
+    types: [assigned, opened]
     branches: [ "develop" ]
   pull_request:
     branches: [ "develop" ]
 
-  # Allows you to run this workflow manually from the Actions tab
+  # 允許你從 Action 頁簽上手動執行 workflow
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# jobs 可以循序或平行執行
 jobs:
-  # This workflow contains a single job called "build"
+  # 這個 workflow 只有一個 job，名稱為 "build"
   build:
-    # The type of runner that the job will run on
+     # 這個 job 會執行在作業系統為 ubuntu 的 runner
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # 作為 job 的一部分，Steps 會循序執行一連串的動作
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # 在 $GITHUB_WORKSPACE 下簽出您的存儲庫，以便您的工作可以訪問它
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
+      # 在 Runner 上使用 shell
       - name: Run a one-line script
         run: echo Hello, world!
 
-      # Runs a set of commands using the runners shell
+      # 執行一組的指令
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
